@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $ENVIRONMENT = "QA" ]; then
+scp /var/lib/jenkins/workspace/parameterizedjob3/target/flipkart.war root@172.31.42.53:/home/userqa/softqa/apache-tomcat-8.5.39/webapps
+ssh root@172.31.42.53 "JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.201.b09-0.amzn2.x86_64/jre" "/home/userqa/softqa/apache-tomcat-8.5.39/bin/startup.sh"
+elif [ $ENVIRONMENT = "DEV" ]; then
+scp /var/lib/jenkins/workspace/parameterizedjob3/target/flipkart.war userdev@172.31.80.15:/home/userdev/softdev/apache-tomcat-8.5.39/webapps
+ssh userdev@172.31.80.15 "JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.201.b09-0.amzn2.x86_64/jre" "/home/userdev/softdev/apache-tomcat-8.5.39/bin/startup.sh"
+fi
